@@ -1,0 +1,370 @@
+import java.util.*;
+
+class AppointmentBooking {
+    ArrayList<String> doctorName = new ArrayList<>();
+    ArrayList<String> doctorQualification = new ArrayList<>();
+    ArrayList<String> doctorGender = new ArrayList<>();
+    ArrayList<String> doctorPassword = new ArrayList<>();
+    ArrayList<Integer> doctorAge = new ArrayList<>();
+    ArrayList<Long> doctorMobileNumber = new ArrayList<>();
+    ArrayList<String> doctorCity = new ArrayList<>();
+    ArrayList<Integer> patientAge = new ArrayList<>();
+    ArrayList<String> patientName = new ArrayList<>();
+    ArrayList<String> patientGender = new ArrayList<>();
+    ArrayList<String> patientPassword = new ArrayList<>();
+    ArrayList<Long> patientMobileNumber = new ArrayList<>();
+    ArrayList<Integer> patientAgeBooking = new ArrayList<>();
+    ArrayList<String> patientNameBooking = new ArrayList<>();
+    ArrayList<String> patientGenderBooking = new ArrayList<>();
+    ArrayList<Integer> doctorID = new ArrayList<>();
+
+    void dataAdd() {
+        doctorName.add("Nagarjun");
+        doctorName.add("Teja");
+        doctorName.add("Prashant");
+        doctorName.add("Manoj");
+        doctorName.add("Sandeep");
+        doctorName.add("Hemanth");
+        doctorName.add("Akilesh");
+
+        doctorQualification.add("MBBS");
+        doctorQualification.add("Er, MBBS");
+        doctorQualification.add("MBBS, MD");
+        doctorQualification.add("MBBS, MD");
+        doctorQualification.add("BAMS");
+        doctorQualification.add("MBBS, MD, Surgeon");
+        doctorQualification.add("BAMS");
+
+        doctorGender.add("M");
+        doctorGender.add("M");
+        doctorGender.add("M");
+        doctorGender.add("M");
+        doctorGender.add("M");
+        doctorGender.add("M");
+        doctorGender.add("M");
+
+        doctorPassword.add("Nagarjun123");
+        doctorPassword.add("Teja106");
+        doctorPassword.add("Prashant123");
+        doctorPassword.add("Manoj546");
+        doctorPassword.add("Sandeep2003");
+        doctorPassword.add("Hemanth123");
+        doctorPassword.add("Akilesh123");
+
+        doctorAge.add(25);
+        doctorAge.add(24);
+        doctorAge.add(29);
+        doctorAge.add(29);
+        doctorAge.add(28);
+        doctorAge.add(23);
+        doctorAge.add(30);
+
+        doctorMobileNumber.add(9422887565L);
+        doctorMobileNumber.add(9988377621L);
+        doctorMobileNumber.add(9854761237L);
+        doctorMobileNumber.add(9237765559L);
+        doctorMobileNumber.add(8309764628L);
+        doctorMobileNumber.add(9735286201L);
+        doctorMobileNumber.add(8092731648L);
+
+        doctorCity.add("Kadapa");
+        doctorCity.add("Kandukur");
+        doctorCity.add("Madurai");
+        doctorCity.add("Hyderabad");
+        doctorCity.add("Mumbai");
+        doctorCity.add("Delhi");
+        doctorCity.add("Chennai");
+    }
+
+    void admin() throws Exception {
+        Scanner sc = new Scanner(System.in);
+        byte choice;
+        boolean flag = true;
+
+        while (flag) {
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            System.out.println("\t\t  Welcome Admin ");
+            System.out.print("\n\n1. Doctor list \t2. Registered Patients \t3. Patients with Appointment  \n\nEnter Your Choice: ");
+            choice = sc.nextByte();
+            switch (choice) {
+                case 1:
+                    for (int i = 0; i < doctorName.size(); i++) {
+                        System.out.println("Name: \t " + doctorName.get(i));
+                    }
+                    System.out.println("\n\n1. Main menu\t 2. Previous menu");
+                    byte menuChoice = sc.nextByte();
+                    if (menuChoice == 1) {
+                        flag = false;
+                    }
+                    break;
+                case 2:
+                    if (patientName.isEmpty()) {
+                        System.out.println("No Registered Patients yet.");
+                        Thread.sleep(3000);
+                    } else {
+                        for (int i = 0; i < patientName.size(); i++) {
+                            System.out.println(i + ". " + patientName.get(i));
+                        }
+                        System.out.println("\n\n1. Main menu\t 2. Previous menu");
+                        menuChoice = sc.nextByte();
+                        if (menuChoice == 1) {
+                            flag = false;
+                        }
+                    }
+                    break;
+                case 3:
+                    if (patientNameBooking.isEmpty()) {
+                        System.out.println("\nNo Appointments yet.");
+                        Thread.sleep(3000);
+                    } else {
+                        for (int i = 0; i < patientNameBooking.size(); i++) {
+                            System.out.println(i + ". " + patientNameBooking.get(i));
+                        }
+                        Thread.sleep(5000);
+                        flag = false;
+                    }
+                    break;
+                default:
+                    System.out.println("Wrong choice");
+                    Thread.sleep(1000);
+            }
+        }
+    }
+
+    void patient() throws Exception {
+        Scanner sc = new Scanner(System.in);
+        boolean flag = true;
+        while (flag) {
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            System.out.println("\t\t  Welcome to Patient Page!");
+            System.out.println("1. Login \t 2. Registration\n");
+            int ch = sc.nextInt();
+            switch (ch) {
+                case 1:
+                    if (patientMobileNumber.isEmpty()) {
+                        System.out.println("First register yourself, then login..!");
+                        Thread.sleep(500);
+                    } else {
+                        patientLogin();
+                        flag = false;
+                    }
+                    break;
+                case 2:
+                    patientRegistration();
+                    flag = false;
+                    break;
+                default:
+                    System.out.println("\nYou entered the wrong choice. Enter your choice again....!!!");
+                    Thread.sleep(1000);
+            }
+        }
+    }
+
+    void doctor() throws Exception {
+        Scanner sc = new Scanner(System.in);
+        boolean flag = true;
+        while (flag) {
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            System.out.println("\t\t  Welcome to Doctor Page! ");
+            System.out.println("1. Login \t 2. Registration");
+            int choice = sc.nextInt();
+            switch (choice) {
+                case 1:
+                    if (doctorMobileNumber.isEmpty()) {
+                        System.out.println("Register first...!");
+                        Thread.sleep(500);
+                    } else {
+                        doctorLogin();
+                        flag = false;
+                    }
+                    break;
+                case 2:
+                    doctorRegistration();
+                    flag = false;
+                    break;
+                default:
+                    System.out.println("Entered Wrong choice..");
+            }
+        }
+    }
+
+    void patientLogin() throws Exception {
+        Scanner sc = new Scanner(System.in);
+        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        System.out.println("\t\t   Login  ");
+        System.out.println("Enter your Username (mobile number)");
+        long mobileNumber = sc.nextLong();
+        System.out.println("Enter your Password");
+        String password = sc.next();
+        boolean flag = false;
+        int index = -1;
+        for (int j = 0; j < patientMobileNumber.size(); j++) {
+            if (patientMobileNumber.get(j).equals(mobileNumber) && patientPassword.get(j).equals(password)) {
+                flag = true;
+                index = j;
+                break;
+            }
+        }
+        if (flag) {
+            Thread.sleep(1000);
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            System.out.println("\t\t  Book Appointment ");
+            System.out.println("\n Welcome " + patientName.get(index) + ", to book an appointment, choose your doctor..");
+            for (int i = 0; i < doctorName.size(); i++) {
+                System.out.println((i + 1) + ". " + doctorName.get(i));
+            }
+            byte choice = sc.nextByte();
+            doctorID.add((int) choice);
+            boolean bookingFlag = true;
+            while (bookingFlag) {
+                Thread.sleep(1000);
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                System.out.println("\t\t   Book Appointment ");
+                if (choice <= doctorName.size() && choice > 0) {
+                    System.out.println("\n\nName: \t " + doctorName.get(choice - 1) + "\nAge: \t " + doctorAge.get(choice - 1) + "\nMobile:  " + doctorMobileNumber.get(choice - 1) + "\nCity: \t " + doctorCity.get(choice - 1));
+                    System.out.println("\n Enter your name: \t");
+                    sc.nextLine(); // Consume newline left-over
+                    patientNameBooking.add(sc.nextLine());
+                    System.out.println(" Enter your age: \t");
+                    patientAgeBooking.add(sc.nextInt());
+                    System.out.println(" Enter your gender: \t");
+                    patientGenderBooking.add(sc.next());
+                    System.out.println("\n Booking Successful..");
+                    Thread.sleep(1000);
+                    bookingFlag = false;
+                } else {
+                    System.out.println("\n Enter correct input..");
+                    Thread.sleep(1000);
+                }
+            }
+        } else {
+            System.out.println("Login unsuccessful.. Try again..!!");
+            Thread.sleep(1000);
+        }
+    }
+
+    void doctorLogin() throws Exception {
+        Scanner sc = new Scanner(System.in);
+        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        System.out.println("\t\t   Login  ");
+        System.out.println("Enter your Username (mobile number)");
+        long mobileNumber = sc.nextLong();
+        System.out.println("Enter your Password");
+        String password = sc.next();
+        boolean flag = false;
+        int index = -1;
+        for (int j = 0; j < doctorMobileNumber.size(); j++) {
+            if (doctorMobileNumber.get(j).equals(mobileNumber) && doctorPassword.get(j).equals(password)) {
+                flag = true;
+                index = j;
+                break;
+            }
+        }
+        if (flag) {
+            System.out.println("\n\nWelcome Dr. " + doctorName.get(index));
+            Thread.sleep(1000);
+            boolean loginFlag = true;
+            while (loginFlag) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                System.out.println("\n\n 1. Check Appointments \t 2. Log out");
+                byte choice = sc.nextByte();
+                switch (choice) {
+                    case 1:
+                        for (int i = 0; i < doctorID.size(); i++) {
+                            if (doctorID.get(i) == index + 1) {
+                                System.out.println("\n Name: " + patientNameBooking.get(i) + "\n Age: " + patientAgeBooking.get(i) + "\n Gender: " + patientGenderBooking.get(i));
+                            }
+                        }
+                        System.out.println("\n\n1. Main menu\t 2. Previous menu");
+                        byte menuChoice = sc.nextByte();
+                        if (menuChoice == 1) {
+                            loginFlag = false;
+                        }
+                        break;
+                    case 2:
+                        loginFlag = false;
+                        break;
+                    default:
+                        System.out.println("Entered Wrong choice..");
+                }
+            }
+        } else {
+            System.out.println("Login unsuccessful.. Try again..!!");
+            Thread.sleep(1000);
+        }
+    }
+
+    void doctorRegistration() throws Exception {
+        Scanner sc = new Scanner(System.in);
+        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        System.out.println("\t\t   Registration ");
+        System.out.print("Enter your Name: \t");
+        sc.nextLine(); // Consume newline left-over
+        doctorName.add(sc.nextLine());
+        System.out.print("Enter your Qualification: \t");
+        doctorQualification.add(sc.nextLine());
+        System.out.print("Enter your Age: \t");
+        doctorAge.add(sc.nextInt());
+        System.out.print("Enter your Gender: \t");
+        doctorGender.add(sc.next());
+        System.out.print("Enter your Mobile Number: \t");
+        doctorMobileNumber.add(sc.nextLong());
+        System.out.print("Enter your City: \t");
+        sc.nextLine(); // Consume newline left-over
+        doctorCity.add(sc.nextLine());
+        System.out.print("Enter your Password: \t");
+        doctorPassword.add(sc.next());
+        System.out.println("Registration Successful..");
+        Thread.sleep(1000);
+    }
+
+    void patientRegistration() throws Exception {
+        Scanner sc = new Scanner(System.in);
+        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        System.out.println("\t\t   Registration ");
+        System.out.print("Enter your Name: \t");
+        sc.nextLine(); // Consume newline left-over
+        patientName.add(sc.nextLine());
+        System.out.print("Enter your Age: \t");
+        patientAge.add(sc.nextInt());
+        System.out.print("Enter your Gender: \t");
+        patientGender.add(sc.next());
+        System.out.print("Enter your Mobile Number: \t");
+        patientMobileNumber.add(sc.nextLong());
+        System.out.print("Enter your Password: \t");
+        patientPassword.add(sc.next());
+        System.out.println("Registration Successful..");
+        Thread.sleep(1000);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        AppointmentBooking a = new AppointmentBooking();
+        a.dataAdd();
+        boolean flag = true;
+        while (flag) {
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            System.out.println("\t\tWelcome to Appointment Booking System");
+            System.out.print("\n1. Admin  \t 2. Doctor  \t 3. Patient  \t 4. Exit  \n\n Enter Your Choice: ");
+            byte choice = sc.nextByte();
+            switch (choice) {
+                case 1:
+                    a.admin();
+                    break;
+                case 2:
+                    a.doctor();
+                    break;
+                case 3:
+                    a.patient();
+                    break;
+                case 4:
+                    flag = false;
+                    break;
+                default:
+                    System.out.println("Wrong choice!");
+            }
+        }
+    }
+}
